@@ -1,65 +1,44 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import * as React from "react";
+import {
+  Checkbox,
+  ColorPicker,
+  createTheme,
+  Customizer,
+  Dropdown,
+  Fabric,
+  initializeIcons,
+  PrimaryButton,
+  Slider,
+  TextField,
+  Toggle,
+  IDropdownStyles,
+} from "office-ui-fabric-react";
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+initializeIcons();
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+// Go to aka.ms/themedesigner for more control over theme.
+const theme = createTheme({
+  palette: {
+    themePrimary: "red",
+  },
+});
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+const dropdownStyles = { root: { width: 200 } };
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+const dropdownObjects = [];
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+for (let i = 0; i < 100; i++) {
+  dropdownObjects.push({ key: `object${i}`, text: `object${i}` });
 }
+
+const Index = () => (
+  <Customizer settings={{ theme }}>
+    <Fabric applyTheme>
+      <div>
+        <Dropdown styles={dropdownStyles} options={dropdownObjects} />
+      </div>
+    </Fabric>
+  </Customizer>
+);
+
+export default Index;
